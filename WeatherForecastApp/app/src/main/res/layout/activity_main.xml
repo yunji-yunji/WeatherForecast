@@ -6,15 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ScrollView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:gravity="bottom">
         <TextView
-            android:id="@+id/listSensor"
+            android:id="@+id/temperature"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-            <!--android:text="Hello World!"-->
-    </ScrollView>
+            android:layout_height="100dp"
+            android:layout_gravity="top"
+            android:layout_weight="1"
+            android:background="#f1deff"
+            android:layout_margin="15dp"
+            />
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="top"
+            android:layout_weight="1"
+            android:background="#f1deff"
+            android:layout_margin="15dp"
+            />
+        <TextView
+            android:id="@+id/pressure"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="top"
+            android:layout_weight="1"
+            android:background="#f1deff"
+            android:layout_margin="15dp"
+            />
+        <TextView
+            android:id="@+id/light"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="top"
+            android:layout_weight="1"
+            android:background="#f1deff"
+            android:layout_margin="15dp"
+            />
+
+        <Button
+            android:id="@+id/listButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sensor List"
+            android:layout_weight="1"
+            android:layout_margin="15dp"
+            />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
