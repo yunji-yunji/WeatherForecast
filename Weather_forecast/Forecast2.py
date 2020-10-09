@@ -37,10 +37,8 @@ while(Weather_Forecast_Model == -1):
     Weather_Forecast_Model = load_model_except();
 
 
-#이게 있어야 잘 불러온다.
 Weather_Forecast_Model.summary();
 
-# 이게 갸 맞더냐
 print("\n\n불러오기 완료\n\n");
 
 
@@ -50,7 +48,7 @@ def load_Data_except():
 
 
     try:
-        X_data_Local = pd.read_csv(answear, names=['기온', '강수량', '습도', '이슬점', '기압', '시정']);
+        X_data_Local = pd.read_csv(answear, names=['기온', '습도', '이슬점', '기압', '시정']);
     except:
         print("파일열기 실패\n");
         X_data_Local = None;
@@ -79,11 +77,10 @@ Time_Hour = int(Time_Hour);
 # 예측하려는 yunji data: 34.6, 0, 59,        25.4, 996.5,  1352
 # train 7 input data: 0.3,  0, 0.93,    -0.7,   21.3,   0.0392
 #X_data.iloc[0,0] = X_data.iloc[0,0] * 0.1;
-X_data.iloc[0, 2] = X_data.iloc[0, 2] * 0.01;       # 습도 2
+X_data.iloc[0, 1] = X_data.iloc[0, 1] * 0.01;       # 습도 1
 #X_data.iloc[0,4] = X_data.iloc[0,4] * 0.1;
-X_data.iloc[0, 4] = (X_data.iloc[0, 4] - 1000);     # 기압  4
-X_data.iloc[0, 5] = X_data.iloc[0, 5] * 0.00001;       # 시정 5
-
+X_data.iloc[0, 3] = (X_data.iloc[0, 3] - 1000);     # 기압  3
+X_data.iloc[0, 4] = X_data.iloc[0, 4] * 0.00001;       # 시정 4
 
 print("입력 데이터");
 print(X_data);
@@ -102,16 +99,16 @@ Forecast_Temperature = Temp[0][0];
 
 
 # 강수 : 1미만이면 그냥 없는 것으로 하자 0으로 나눔 예외발생한다.
-if Temp[0][1] < 1:
-    Forecast_Rain = 0;
-else:
-    Forecast_Rain = Temp[0][1];
+# if Temp[0][1] < 1:
+#     Forecast_Rain = 0;
+# else:
+#     Forecast_Rain = Temp[0][1];
 
 # Forecast_Wind = Temp[0][2];
-Forecast_Humidity = Temp[0][2] * 100;
-Forecast_Dew_Point = Temp[0][3];
-Forecast_Pressure = (Temp[0][4]) + 1000;
-Forecast_Sight = Temp[0][5] * 100000;
+Forecast_Humidity = Temp[0][1] * 100;
+Forecast_Dew_Point = Temp[0][2];
+Forecast_Pressure = (Temp[0][3]) + 1000;
+Forecast_Sight = Temp[0][4] * 100000;
 
 
 print("기상예보 \n\n");
@@ -121,7 +118,7 @@ print(Temp);
 print("\n");
 
 print("기온: ", Forecast_Temperature, "C");
-print("강수량: ", Forecast_Rain, "mm");
+# print("강수량: ", Forecast_Rain, "mm");
 # print("풍속: ", Forecast_Wind, "M/s");
 print("습도: ", Forecast_Humidity, "%");
 
@@ -132,7 +129,7 @@ print("시정: ", Forecast_Sight, "Meter");
 answear = input("\n\n결과 저장하기 >");
 
 Save_Array = [Forecast_Temperature,
-                Forecast_Rain,
+                # Forecast_Rain,
               # Forecast_Wind,
               Forecast_Humidity,Forecast_Dew_Point,Forecast_Pressure,
               Forecast_Sight];
