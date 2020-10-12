@@ -48,7 +48,7 @@ def load_Data_except():
 
 
     try:
-        X_data_Local = pd.read_csv(answear, names=['기온', '습도', '이슬점', '기압', '시정']);
+        X_data_Local = pd.read_csv(answear, names=['기온', '습도', '이슬점', '기압']);
     except:
         print("파일열기 실패\n");
         X_data_Local = None;
@@ -80,7 +80,7 @@ Time_Hour = int(Time_Hour);
 X_data.iloc[0, 1] = X_data.iloc[0, 1] * 0.01;       # 습도 1
 #X_data.iloc[0,4] = X_data.iloc[0,4] * 0.1;
 X_data.iloc[0, 3] = (X_data.iloc[0, 3] - 1000);     # 기압  3
-X_data.iloc[0, 4] = X_data.iloc[0, 4] * 0.00001;       # 시정 4
+# X_data.iloc[0, 4] = X_data.iloc[0, 4] * 0.00001;       # 시정 4
 
 print("입력 데이터");
 print(X_data);
@@ -108,7 +108,7 @@ Forecast_Temperature = Temp[0][0];
 Forecast_Humidity = Temp[0][1] * 100;
 Forecast_Dew_Point = Temp[0][2];
 Forecast_Pressure = (Temp[0][3]) + 1000;
-Forecast_Sight = Temp[0][4] * 100000;
+# Forecast_Sight = Temp[0][4] * 100000;
 
 
 print("기상예보 \n\n");
@@ -124,15 +124,15 @@ print("습도: ", Forecast_Humidity, "%");
 
 print("이슬점: ", Forecast_Dew_Point, "C");
 print("기압: ", Forecast_Pressure, "hpa");
-print("시정: ", Forecast_Sight, "Meter");
+# print("시정: ", Forecast_Sight, "Meter");
 
 answear = input("\n\n결과 저장하기 >");
 
 Save_Array = [Forecast_Temperature,
                 # Forecast_Rain,
               # Forecast_Wind,
-              Forecast_Humidity,Forecast_Dew_Point,Forecast_Pressure,
-              Forecast_Sight];
+              Forecast_Humidity,Forecast_Dew_Point,Forecast_Pressure];
+              # , Forecast_Sight];
 
 Save_File = [ Save_Array];
 

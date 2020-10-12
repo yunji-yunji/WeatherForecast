@@ -41,7 +41,7 @@ def load_Data_except():
 
     try:
         Train_Set = pd.read_csv(answear,
-                                  names=['기온', '습도', '이슬점', '기압', '시정']);
+                                  names=['기온', '습도', '이슬점', '기압']);
     except:
         print("파일열기 실패\n");
         Train_Set = None;
@@ -92,26 +92,26 @@ Weather_Forecast_Model = Sequential();
 
 # 은닉층 이름이 달라야 추가된다. 같은 것을 계속 추가할 수는 없다.
 # 중간에 ReLU층이 어느 정도 있어야 한다.
-Hidden_Layer1 = Dense(10, input_dim=5,activation='linear');
+Hidden_Layer1 = Dense(8, input_dim=4,activation='linear');
 Weather_Forecast_Model.add(Hidden_Layer1);
 
-Hidden_Layer2 = Dense(10, activation='linear');
+Hidden_Layer2 = Dense(8, activation='linear');
 Weather_Forecast_Model.add(Hidden_Layer2);
 
-Hidden_Layer3 = Dense(5, activation='linear');
+Hidden_Layer3 = Dense(4, activation='linear');
 Weather_Forecast_Model.add(Hidden_Layer3);
 
-Hidden_Layer4 = Dense(5, activation='linear');
+Hidden_Layer4 = Dense(4, activation='linear');
 Weather_Forecast_Model.add(Hidden_Layer4);
 
 
-Hidden_Layer5 = Dense(5, activation='linear');
+Hidden_Layer5 = Dense(4, activation='linear');
 Weather_Forecast_Model.add(Hidden_Layer5);
 
-Hidden_Layer6 = Dense(5, activation='linear');
+Hidden_Layer6 = Dense(4, activation='linear');
 Weather_Forecast_Model.add(Hidden_Layer6);
 
-Hidden_Layer7 = Dense(5, activation='linear');
+Hidden_Layer7 = Dense(4, activation='linear');
 Weather_Forecast_Model.add(Hidden_Layer7);
 
 
