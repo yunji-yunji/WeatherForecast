@@ -13,6 +13,8 @@
         android:gravity="bottom">
         <TextView
             android:id="@+id/temperature"
+            android:textSize="24dp"
+
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_gravity="top"
@@ -22,6 +24,7 @@
             />
         <TextView
             android:id="@+id/humidity"
+            android:textSize="24dp"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_gravity="top"
@@ -31,6 +34,8 @@
             />
         <TextView
             android:id="@+id/pressure"
+            android:textSize="24dp"
+
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_gravity="top"
@@ -40,6 +45,8 @@
             />
         <TextView
             android:id="@+id/light"
+            android:textSize="24dp"
+
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_gravity="top"
@@ -52,7 +59,7 @@
             android:id="@+id/listButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sensor List"
+            android:text="CONNECT BLUETOOTH"
             android:layout_weight="1"
             android:layout_margin="15dp"
             />

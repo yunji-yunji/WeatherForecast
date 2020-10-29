@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     // EXAMPLE ONLY - RESET HIGHEST AT 500°C
     public Double closestTemperature = 500.0;
     public Long resetTime = 0L;
+
     public String getAmbientTemperature(int averageRunningTemp, int period)
     {
         // CHECK MINUTES PASSED ( STOP CONSTANT LOW VALUE )
@@ -114,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
 
 //        My Average Heat was 11°C higher than the real temperature --> 11 being Average Temperature
 //        30 being Next Reset Time ( Period of minimum check )
-        String temper = getAmbientTemperature(9, 30);
-        Log.d("온도@@@@@ ", temper );
+//        String temper = getAmbientTemperature(9, 30);
+//        Log.d("온도@@@@@ ", temper );
 
         txtTemperature = (TextView) findViewById(R.id.temperature);
         txtHumidity = (TextView) findViewById(R.id.humidity);
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO : Change Activity to Manager Activity
-                Intent intent = new Intent(MainActivity.this, MangerActivity.class);
+                Intent intent = new Intent(MainActivity.this, BluetoothActivity.class);
 //                intent.putExtra(“text”,String.valueOf(editText.getText()));
                 startActivity(intent);
             }
@@ -137,8 +138,8 @@ public class MainActivity extends AppCompatActivity {
         manager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         // 1. 온도
-//        temperature = manager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
-        temperature = manager.getDefaultSensor(Sensor.TYPE_TEMPERATURE);
+        temperature = manager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+//        temperature = manager.getDefaultSensor(Sensor.TYPE_TEMPERATURE);
 //         2. 습도
         humidity = manager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
         // 3. 압력
@@ -149,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
         if (temperature == null) {
             Log.d("온도센서가 ", String.valueOf(temperature) );
         }
-
 
         if (humidity == null) {
             Log.d("습도센서가 ", String.valueOf(humidity) );
@@ -165,15 +165,15 @@ public class MainActivity extends AppCompatActivity {
 
                 switch(event.sensor.getType()) {
 
-                    case Sensor.TYPE_TEMPERATURE:
+                    case Sensor.TYPE_AMBIENT_TEMPERATURE:
                         sensor_value = event.values[0];
-                        Log.d("온도 이벤트긴하다.",String.valueOf(sensor_value) );
-                        if(temperature == null) {
-                            txtTemperature.setText("온도 센서 없음");
-                        }
+//                        Log.d("온도 이벤트긴하다.",String.valueOf(sensor_value) );
+//                        if(temperature == null) {
+//                            txtTemperature.setText("온도 센서 없음");
+//                        }
     //                    sensor_value = event.values[0] + event.values[1] + event.values[2];
     //                    float[] tmp = event.values;
-                        txtTemperature.setText(String.valueOf(sensor_value));
+                        txtTemperature.setText("TEMPERATURE " + String.valueOf(sensor_value));
                         break;
 
                     case Sensor.TYPE_RELATIVE_HUMIDITY:
@@ -183,17 +183,18 @@ public class MainActivity extends AppCompatActivity {
                             txtHumidity.setText("습도 센서 없음");
                         }
                         sensor_value = event.values[0];
-                        txtHumidity.setText(String.valueOf(sensor_value));
+                        txtHumidity.setText("HUMIDITY " + String.valueOf(sensor_value));
                         break;
 
                     case Sensor.TYPE_PRESSURE:
                         sensor_value = event.values[0];
-                        txtPressure.setText(String.valueOf(sensor_value));
+//                        String res = "PRESSURE" + sensor_value;
+                        txtPressure.setText("PRESSURE " + String.valueOf(sensor_value));
                         break;
 
                     case Sensor.TYPE_LIGHT:
                         sensor_value = event.values[0];
-                        txtLight.setText(String.valueOf(sensor_value));
+                        txtLight.setText("LIGHT " + String.valueOf(sensor_value));
                 }
             }
 
